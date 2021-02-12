@@ -16,7 +16,7 @@ This was tested with [Neovim Nightly (0.5)](https://github.com/neovim/neovim/rel
 Using [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```viml
-Plug 'johann2357/nvim-smartbufs.nvim'
+Plug 'johann2357/nvim-smartbufs'
 ```
 
 ## Usage
