@@ -40,7 +40,7 @@ local function get_active_buffers(buf_comparison_func)
         end
     end
     -- TODO: remove print used to debug
-    print(vim.inspect(active_buffers))
+    -- print(vim.inspect(active_buffers))
     return active_buffers
 end
 
