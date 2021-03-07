@@ -92,15 +92,11 @@ end
 -- @param buffer_table table with buffer ids.
 -- @return buf_id index found or nil if not found.
 local function find_buffer(buf_id, buffer_table)
-    local total_elems = 0
-    local found_idx = nil
     for idx, table_buf_id in ipairs(buffer_table) do
-        total_elems = total_elems + 1
         if buf_id == table_buf_id then
-            found_idx = idx
+            return idx
         end
     end
-    return found_idx, total_elems
 end
 
 
