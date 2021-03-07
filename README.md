@@ -9,10 +9,11 @@ WIP neovim plugin that will allow easier buffer management.
 Basically the goal is to improve the current `:bnext` or `:bprev`,
 and allow switching to any buffer without using `:ls` and then `:buffer <N>`
 
-Use cases:
+### Example use cases:
+
 * You might want to switch to the first buffer you opened.
-  * Or into any buffer N that you oppened quickly.
-* If you have a terminal buffer open
+  * Or into any buffer `N` that you oppened.
+* If you have a terminal buffer open.
   * And don't want to `:bnext` or `:bprev` to include that terminal buffer.
 
 ## Getting Started
@@ -24,9 +25,6 @@ This is meant for neovim users that use buffers and not tabs
 * You might want to have all buffers listed somewhere (optional)
   * I use `vim-airline` to have open buffers listed at the top.
 
-Future work:
-* I might add a simple interface to list and switch to any buffer
-  * Currently, only remaps are the only way to go.
 
 ### Installation
 
@@ -62,7 +60,7 @@ nnoremap <Leader><S-Tab> :lua require("nvim-smartbufs").open_prev_buffer()<CR>
 
 ### Future ideas
 
-Possible improvements:
+* Possible new mappings:
 
 ```viml
 " Delete current buffer and goes back to the previous one
@@ -71,3 +69,6 @@ nnoremap <Leader>qq :lua require("nvim-smartbufs").delete_n_active_buffer(1)<CR>
 " Delete the N buffer according to :ls buffer list
 nnoremap <Leader>q1 :lua require("nvim-smartbufs").delete_n_active_buffer(1)<CR>
 ```
+
+* I might add a simple interface to list and switch to any buffer.
+  * Currently, only remaps are the only way to go.
