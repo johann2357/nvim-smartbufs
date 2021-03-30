@@ -83,6 +83,10 @@ M.goto_next_buffer = function()
     local current_buf_id = vim.fn.nvim_get_current_buf()
     local total_bufs = table.maxn(active_bufs)
     local buf_idx = find_buffer(current_buf_id, active_bufs)
+    if buf_idx == nil then
+        -- TODO: keep track of last used buffer
+        buf_idx = 0
+    end
     local next_buf_idx = (buf_idx + 1) % (total_bufs + 1)
     if next_buf_idx == 0 then
         next_buf_idx = 1
@@ -99,6 +103,10 @@ M.goto_prev_buffer = function()
     local current_buf_id = vim.fn.nvim_get_current_buf()
     local total_bufs = table.maxn(active_bufs)
     local buf_idx = find_buffer(current_buf_id, active_bufs)
+    if buf_idx == nil then
+        -- TODO: keep track of last used buffer
+        buf_idx = 0
+    end
     local prev_buf_idx = (buf_idx - 1) % (total_bufs + 1)
     if prev_buf_idx == 0 then
         prev_buf_idx = total_bufs
