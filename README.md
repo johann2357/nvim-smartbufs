@@ -15,6 +15,8 @@ and allow switching to any buffer without using `:ls` and then `:buffer <N>`
   * Or into any buffer `N` that you oppened.
 * If you have a terminal buffer open.
   * And don't want to `:bnext` or `:bprev` to include that terminal buffer.
+* Open a terminal buffer
+  * And don't want to get rid of that terminal buffer after switching to another one.
 
 ## Getting Started
 
@@ -43,19 +45,25 @@ The following mappings are recommended.
 " Jump to the N buffer according to :ls buffer list
 " where N is not the buffer number but the index in such list
 " NOTE: it does not include terminal buffers
-nnoremap <Leader>1 :lua require("nvim-smartbufs").open_n_buffer(1)<CR>
-nnoremap <Leader>2 :lua require("nvim-smartbufs").open_n_buffer(2)<CR>
-nnoremap <Leader>3 :lua require("nvim-smartbufs").open_n_buffer(3)<CR>
-nnoremap <Leader>4 :lua require("nvim-smartbufs").open_n_buffer(4)<CR>
-nnoremap <Leader>5 :lua require("nvim-smartbufs").open_n_buffer(5)<CR>
-nnoremap <Leader>6 :lua require("nvim-smartbufs").open_n_buffer(6)<CR>
-nnoremap <Leader>7 :lua require("nvim-smartbufs").open_n_buffer(7)<CR>
-nnoremap <Leader>8 :lua require("nvim-smartbufs").open_n_buffer(8)<CR>
-nnoremap <Leader>9 :lua require("nvim-smartbufs").open_n_buffer(9)<CR>
+nnoremap <Leader>1 :lua require("nvim-smartbufs").goto_buffer(1)<CR>
+nnoremap <Leader>2 :lua require("nvim-smartbufs").goto_buffer(2)<CR>
+nnoremap <Leader>3 :lua require("nvim-smartbufs").goto_buffer(3)<CR>
+nnoremap <Leader>4 :lua require("nvim-smartbufs").goto_buffer(4)<CR>
+nnoremap <Leader>5 :lua require("nvim-smartbufs").goto_buffer(5)<CR>
+nnoremap <Leader>6 :lua require("nvim-smartbufs").goto_buffer(6)<CR>
+nnoremap <Leader>7 :lua require("nvim-smartbufs").goto_buffer(7)<CR>
+nnoremap <Leader>8 :lua require("nvim-smartbufs").goto_buffer(8)<CR>
+nnoremap <Leader>9 :lua require("nvim-smartbufs").goto_buffer(9)<CR>
 
 " Improved :bnext :bprev behavior (without considering terminal buffers)
-nnoremap <Leader><Tab> :lua require("nvim-smartbufs").open_next_buffer()<CR>
-nnoremap <Leader><S-Tab> :lua require("nvim-smartbufs").open_prev_buffer()<CR>
+nnoremap <Right> :lua require("nvim-smartbufs").goto_next_buffer()<CR>
+nnoremap <Left> :lua require("nvim-smartbufs").goto_prev_buffer()<CR>
+
+" Open terminal buffer and set it as hidden so it won't get deleted
+nnoremap <Leader>c1 :lua require("nvim-smartbufs").goto_terminal(1)<CR>
+nnoremap <Leader>c2 :lua require("nvim-smartbufs").goto_terminal(2)<CR>
+nnoremap <Leader>c3 :lua require("nvim-smartbufs").goto_terminal(3)<CR>
+nnoremap <Leader>c4 :lua require("nvim-smartbufs").goto_terminal(4)<CR>
 ```
 
 ### Future ideas
