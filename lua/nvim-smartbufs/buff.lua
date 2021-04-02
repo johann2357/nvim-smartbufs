@@ -115,4 +115,34 @@ M.goto_prev_buffer = function()
 end
 
 
+--- Closes current active buffer.
+-- Also calls goto_prev_buffer so it doesn't close the current window.
+-- @treturn nil
+M.close_current_buffer = function()
+    local buf_id = vim.fn.nvim_get_current_buf()
+    M.goto_prev_buffer()
+    vim.api.nvim_command(string.format("bdelete %d", buf_id))
+end
+
+
+--- Closes the given buffer index in buffers table.
+-- If buf_idx is the current buffer it will call close_current_buffer.
+-- @param buf_idx buffer index to be opened.
+-- @treturn nil
+M.close_buffer = function(buf_idx)
+    local active_bufs = get_active_buffers()
+    local selected_buf = active_bufs[buf_idx]
+    if selected_buf == nil then
+        return
+    end
+
+    local current_buf_id = vim.fn.nvim_get_current_buf()
+    if selected_buf == current_buf_id then
+        M.close_current_buffer()
+    else
+        vim.api.nvim_command(string.format("bdelete %d", selected_buf))
+    end
+end
+
+
 return M

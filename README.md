@@ -15,8 +15,10 @@ and allow switching to any buffer without using `:ls` and then `:buffer <N>`
   * Or into any buffer `N` that you oppened.
 * If you have a terminal buffer open.
   * And don't want to `:bnext` or `:bprev` to include that terminal buffer.
-* Open a terminal buffer
+* Open a terminal buffer.
   * And don't want to get rid of that terminal buffer after switching to another one.
+* Close buffers without closing your window splits.
+  * Currently only working for current file buffer.
 
 ## Getting Started
 
@@ -64,6 +66,20 @@ nnoremap <Leader>c1 :lua require("nvim-smartbufs").goto_terminal(1)<CR>
 nnoremap <Leader>c2 :lua require("nvim-smartbufs").goto_terminal(2)<CR>
 nnoremap <Leader>c3 :lua require("nvim-smartbufs").goto_terminal(3)<CR>
 nnoremap <Leader>c4 :lua require("nvim-smartbufs").goto_terminal(4)<CR>
+
+" Delete current buffer and goes back to the previous one
+nnoremap <Leader>qq :lua require("nvim-smartbufs").close_current_buffer()<CR>
+
+" Delete the N buffer according to :ls buffer list
+nnoremap <Leader>q1 :lua require("nvim-smartbufs").close_buffer(1)<CR>
+nnoremap <Leader>q2 :lua require("nvim-smartbufs").close_buffer(2)<CR>
+nnoremap <Leader>q3 :lua require("nvim-smartbufs").close_buffer(3)<CR>
+nnoremap <Leader>q4 :lua require("nvim-smartbufs").close_buffer(4)<CR>
+nnoremap <Leader>q5 :lua require("nvim-smartbufs").close_buffer(5)<CR>
+nnoremap <Leader>q6 :lua require("nvim-smartbufs").close_buffer(6)<CR>
+nnoremap <Leader>q7 :lua require("nvim-smartbufs").close_buffer(7)<CR>
+nnoremap <Leader>q8 :lua require("nvim-smartbufs").close_buffer(8)<CR>
+nnoremap <Leader>q9 :lua require("nvim-smartbufs").close_buffer(9)<CR>
 ```
 
 ### Future ideas
@@ -71,11 +87,11 @@ nnoremap <Leader>c4 :lua require("nvim-smartbufs").goto_terminal(4)<CR>
 * Possible new mappings:
 
 ```viml
-" Delete current buffer and goes back to the previous one
-nnoremap <Leader>qq :lua require("nvim-smartbufs").delete_n_active_buffer(1)<CR>
+" Delete buffer it is a file buffer or hide it if it is a terminal buffer
+nnoremap <Leader>qq :lua require("nvim-smartbufs").close_this()<CR>
 
-" Delete the N buffer according to :ls buffer list
-nnoremap <Leader>q1 :lua require("nvim-smartbufs").delete_n_active_buffer(1)<CR>
+" Close all buffers but current one
+nnoremap <Leader>qa :lua require("nvim-smartbufs").close_all()<CR>
 ```
 
 * I might add a simple interface to list and switch to any buffer.
