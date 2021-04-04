@@ -1,46 +1,23 @@
 # nvim-smartbufs
 
-Quickly switch into any active buffer.
-
-## What is nvim-smartbufs?
-
 WIP neovim plugin that will allow easier buffer management.
 
-Basically the goal is to improve the current `:bnext` or `:bprev`,
-and allow switching to any buffer without using `:ls` and then `:buffer <N>`
+Master neovim buffers by quickly switch into any active file or terminal buffer.
 
-### Example use cases:
+## Features
 
-* You might want to switch to the first buffer you opened.
-  * Or into any buffer `N` that you oppened.
-* If you have a terminal buffer open.
-  * And don't want to `:bnext` or `:bprev` to include that terminal buffer.
-* Open a terminal buffer.
-  * And don't want to get rid of that terminal buffer after switching to another one.
-* Close buffers without closing your window splits.
-  * Currently only working for current file buffer.
-
-## Getting Started
-
-This was tested with [Neovim Nightly (0.5)](https://github.com/neovim/neovim/releases/tag/nightly)
-  but it should probably work with the stable version as well.
-
-This is meant for neovim users that use buffers and not tabs
-* You might want to have all buffers listed somewhere (optional)
-  * I use `vim-airline` to have open buffers listed at the top.
-
-
-### Installation
-
-Using [vim-plug](https://github.com/junegunn/vim-plug)
-
-```viml
-Plug 'johann2357/nvim-smartbufs'
-```
+* Switch into any buffer you opened (by index).
+* Launch a terminal buffer that won't get deleted so you can reuse it.
+  * When using `:terminal`, if the buffer is not displayed, it will get deleted.
+* Go to next and previous buffer in the buffer list.
+  * Without considering terminal buffers.
+* Close (delete) any buffer or the current one.
+  * It will try to preserve your current layout, so it won't close your splits.
 
 ## Usage
 
 Add some mappings according to your needs.
+
 The following mappings are recommended.
 
 ```viml
@@ -82,12 +59,31 @@ nnoremap <Leader>q8 :lua require("nvim-smartbufs").close_buffer(8)<CR>
 nnoremap <Leader>q9 :lua require("nvim-smartbufs").close_buffer(9)<CR>
 ```
 
+## Getting Started
+
+This was tested with [Neovim Nightly (0.5)](https://github.com/neovim/neovim/releases/tag/nightly)
+  but it should probably work with the stable version as well.
+
+This is meant for neovim users that use buffers and not tabs
+* You might want to have all buffers listed somewhere (optional)
+  * I use `nvim-hardline` to list the open buffers at the top.
+    * https://github.com/ojroques/nvim-hardline
+  * Also it is possible with `vim-airline`.
+
+### Installation
+
+Using [vim-plug](https://github.com/junegunn/vim-plug)
+
+```viml
+Plug 'johann2357/nvim-smartbufs'
+```
+
 ### Future ideas
 
 * Possible new mappings:
 
 ```viml
-" Delete buffer it is a file buffer or hide it if it is a terminal buffer
+" Delete buffer it is a file buffer or close terminal buffer
 nnoremap <Leader>qq :lua require("nvim-smartbufs").close_this()<CR>
 
 " Close all buffers but current one
