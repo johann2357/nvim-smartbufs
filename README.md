@@ -7,12 +7,18 @@ Master neovim buffers by quickly switch into any active file or terminal buffer.
 ## Features
 
 * Switch into any buffer you opened (by index).
-* Launch a terminal buffer that won't get deleted so you can reuse it.
-  * When using `:terminal`, if the buffer is not displayed, it will get deleted.
+* Launch a terminal buffer that won't get deleted so you can reopen it and resume work.
+  * Why? When using `:terminal`, if the buffer is not displayed, it will get deleted.
 * Go to next and previous buffer in the buffer list.
   * Without considering terminal buffers.
 * Close (delete) any buffer or the current one.
   * It will try to preserve your current layout, so it won't close your splits.
+
+## Demo
+
+* Switch between first and third opened buffers
+![Switch between 1st and 3rd buffer](https://raw.githubusercontent.com/wiki/johann2357/nvim-smartbufs/screenshots/switch-to-n.gif)
+* [Check the complete demo](https://github.com/johann2357/nvim-smartbufs/wiki/Demo)
 
 ## Usage
 
@@ -21,8 +27,8 @@ Add some mappings according to your needs.
 The following mappings are recommended.
 
 ```viml
-" Jump to the N buffer according to :ls buffer list
-" where N is not the buffer number but the index in such list
+" Jump to the N buffer (by index) according to :ls buffer list
+" where N is NOT the buffer number but the INDEX in such list
 " NOTE: it does not include terminal buffers
 nnoremap <Leader>1 :lua require("nvim-smartbufs").goto_buffer(1)<CR>
 nnoremap <Leader>2 :lua require("nvim-smartbufs").goto_buffer(2)<CR>
