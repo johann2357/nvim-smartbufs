@@ -23,7 +23,7 @@ end
 -- It also checks if buffer is valid and listed.
 -- @return table with active buffers
 local function get_active_buffers()
-    local bufs = vim.fn.nvim_list_bufs()
+    local bufs = vim.api.nvim_list_bufs()
     local active_buffers = {}
     local count = 0
     for idx, buf_id in pairs(bufs) do
@@ -80,7 +80,7 @@ end
 -- @treturn nil
 M.goto_next_buffer = function()
     local active_bufs = get_active_buffers()
-    local current_buf_id = vim.fn.nvim_get_current_buf()
+    local current_buf_id = vim.api.nvim_get_current_buf()
     local total_bufs = table.maxn(active_bufs)
     local buf_idx = find_buffer(current_buf_id, active_bufs)
     if buf_idx == nil then
@@ -100,7 +100,7 @@ end
 -- @treturn nil
 M.goto_prev_buffer = function()
     local active_bufs = get_active_buffers()
-    local current_buf_id = vim.fn.nvim_get_current_buf()
+    local current_buf_id = vim.api.nvim_get_current_buf()
     local total_bufs = table.maxn(active_bufs)
     local buf_idx = find_buffer(current_buf_id, active_bufs)
     if buf_idx == nil then
@@ -119,7 +119,7 @@ end
 -- Also calls goto_prev_buffer so it doesn't close the current window.
 -- @treturn nil
 M.close_current_buffer = function()
-    local buf_id = vim.fn.nvim_get_current_buf()
+    local buf_id = vim.api.nvim_get_current_buf()
     M.goto_prev_buffer()
     vim.api.nvim_command(string.format("bdelete %d", buf_id))
 end
@@ -136,7 +136,7 @@ M.close_buffer = function(buf_idx)
         return
     end
 
-    local current_buf_id = vim.fn.nvim_get_current_buf()
+    local current_buf_id = vim.api.nvim_get_current_buf()
     if selected_buf == current_buf_id then
         M.close_current_buffer()
     else
