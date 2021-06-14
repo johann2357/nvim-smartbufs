@@ -17,7 +17,7 @@ local function create_terminal()
 
     -- Make sure the term buffer has "hidden" set so it doesn't get thrown
     -- away and cause an error
-    vim.api.nvim_buf_set_option(bufh, "bufhidden", "hide")
+    vim.api.nvim_buf_set_option(0, "bufhidden", "hide")
 
     return buf_id, term_id
 end
@@ -38,6 +38,17 @@ M.goto_terminal = function(idx)
         terminals[idx] = term_handle
     else
         vim.api.nvim_set_current_buf(term_handle.buf_id)
+    end
+end
+
+
+M.send_command = function(idx, cmd)
+    local term_handle = terminals[idx]
+    if term_handle == nil then
+        return
+    end
+    if cmd then
+        vim.fn.chansend(term_handle.term_id, cmd)
     end
 end
 

@@ -6,6 +6,7 @@ local M = {}
 
 -- Stable
 M.goto_terminal = term.goto_terminal
+M.send_command = term.send_command
 M.goto_buffer = buff.goto_buffer
 M.goto_next_buffer = buff.goto_next_buffer
 M.goto_prev_buffer = buff.goto_prev_buffer
